@@ -1,0 +1,21 @@
+volumes:
+  mysql-data:
+
+services:
+  app:
+    image: golang:bookworm
+    volumes:
+      - ./:/app
+    environment:
+      - TZ=America/Sao_Paulo
+    command: sleep infinity
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_USER: teste
+      MYSQL_PASSWORD: teste123
+      MYSQL_DATABASE: testedb
